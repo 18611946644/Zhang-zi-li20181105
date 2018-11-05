@@ -22,7 +22,6 @@
         android:fitsSystemWindows="true"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
-        app:mainColor="#848484"
         >
 
     </android.support.v7.widget.Toolbar>
@@ -38,7 +37,9 @@
         <com.bwie.zhangzili20181105.myview.MyView
             android:id="@+id/myView"
             android:layout_width="500dp"
-            android:layout_height="500dp" />
+            android:layout_height="500dp"
+            app:properties_Color="#f00"
+            />
 
     </LinearLayout>
 

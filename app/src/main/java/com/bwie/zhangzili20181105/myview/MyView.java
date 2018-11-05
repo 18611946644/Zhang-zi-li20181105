@@ -27,6 +27,8 @@ import com.bwie.zhangzili20181105.R;
 
 public class MyView extends View implements View.OnClickListener {
 
+    private int mColor;
+
     //定义一个接口
     public interface OnClickMyViewListener {
         void onClick(RotateAnimation rotateAnimation, View v);
@@ -64,10 +66,11 @@ public class MyView extends View implements View.OnClickListener {
     public MyView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         //自定义View 的自定义属性获取
-        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TabButtonRecyclerView, defStyleAttr, 0);
+        //TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.TabButtonRecyclerView, defStyleAttr, 0);
+        TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.properties_type);
         //默认color.xml中定义的mainColor
-        mMainColor = typedArray.getColor(R.styleable.TabButtonRecyclerView_mainColor, getResources().getColor(R.color.colorPrimary));
-
+        mColor = typedArray.getColor(R.styleable.properties_type_properties_Color, Color.RED);
+        //绘制小圆时引用
 
         //1.2 初始化操作
         initPaint();
@@ -149,7 +152,7 @@ public class MyView extends View implements View.OnClickListener {
         initArc(canvas);
 
         //绘制小圆
-        mPaint.setColor(Color.RED);
+        mPaint.setColor(mColor);//自定义的
         mPaint.setStyle(Paint.Style.FILL);
         canvas.drawCircle(mWidth/2,mWidth/2,50,mPaint);
 
@@ -199,12 +202,13 @@ public class MyView extends View implements View.OnClickListener {
     public void onClick(View v) {
         if(!isStart){
            isStart = true;
-           mRotateAnimation.setDuration(1000);
+            mRotateAnimation.setDuration(1000);
            //不停顿
             mRotateAnimation.setInterpolator(new LinearInterpolator());
-            Toast.makeText(v.getContext(),"开始",Toast.LENGTH_SHORT).show();
+            //Toast.makeText(v.getContext(),"开始",Toast.LENGTH_SHORT).show();
+            mOnClickMyViewListener.onClick(mRotateAnimation,v);
             startAnimation(mRotateAnimation);
-            /*mOnClickMyViewListener.onClick(mRotateAnimation,v);*/
+
         }else{
             isStart = false;
             Toast.makeText(v.getContext(),"停止",Toast.LENGTH_SHORT).show();

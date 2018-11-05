@@ -41,9 +41,9 @@ public class MainActivity extends AppCompatActivity {
         mMyView.setOnClickMyViewListener(new MyView.OnClickMyViewListener() {
             @Override
             public void onClick(RotateAnimation rotateAnimation, View v) {
-                mRotateAnimation.setInterpolator(new LinearInterpolator());
+               // mRotateAnimation.setInterpolator(new LinearInterpolator());
                 Toast.makeText(v.getContext(),"开始",Toast.LENGTH_SHORT).show();
-                startAnimation(mRotateAnimation);
+               // startAnimation(mRotateAnimation);
             }
         });
     }
@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity {
        /* */
     }
 
-    private void startAnimation(Animator rotateAnimation) {
+/*    private void startAnimation(Animator rotateAnimation) {
 
-    }
+    }*/
 }
